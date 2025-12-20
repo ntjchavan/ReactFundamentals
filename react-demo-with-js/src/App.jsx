@@ -9,8 +9,8 @@ import ContactUs from './components/basic/ContactUs';
 function App() {
   return (
     <Routes>
-        <Route element={<SidebarLayout />}>
-        {/* <Route element={<Layout />}> */}
+        {/* <Route element={<SidebarLayout />}> */}
+        <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/aboutus" element={<Aboutus />} />

@@ -1,18 +1,38 @@
 import { Link } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown, Badge, Dropdown } from 'react-bootstrap'
 import { FaBell, FaUserCircle } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function AppNavbar() {
     const [expanded, setExpanded] = useState(false);
+    const [notificationOpen, setNotificationOpen] = useState(false);
+    const navRef = useRef(null); // for navbar collapse
+    const notificationRef = useRef(null) // for notification dropdown
+
+    // Close navbar or notification if clicked outside
+    useEffect(() => {
+        function handleClickOutside(event) {
+            // Close navbar collapse
+            if (expanded && navRef.current && !navRef.current.contains(event.target)) {
+                setExpanded(false);
+            }
+
+            // Close notification dropdown
+            if (notificationOpen && notificationRef.current && !notificationRef.current.contains(event.target)) {
+                setNotificationOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [expanded, notificationOpen]);
 
     return (
         <>
-            <Navbar bg="dark" variant="dark" expand="lg" fixed="top" expanded={expanded}>
+            <Navbar bg="dark" variant="dark" expand="lg" fixed="top" expanded={expanded} ref={navRef}>
                 <Container>
                     {/* Left: Logo / Menu */}
-                    <Navbar.Brand as={Link} to="/" onClick={() => {setExpanded(false)}}>MyApp</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="main-navbar" onClick={() => {setExpanded(prev => !prev)}} />
+                    <Navbar.Brand as={Link} to="/" onClick={() => { setExpanded(false) }}>MyApp</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="main-navbar" onClick={() => { setExpanded(prev => !prev) }} />
                     <Navbar.Collapse id="main-navbar">
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to="/home" onClick={() => setExpanded(false)}>Home</Nav.Link>
@@ -22,14 +42,14 @@ function AppNavbar() {
 
                             {/* Dropdown menu */}
                             <NavDropdown title="Employees" id="employees-dropdown">
-                                <NavDropdown.Item as={Link} to="/employees/list">
+                                <NavDropdown.Item as={Link} to="/home" onClick={() => setExpanded(false)}>
                                     Employee List
                                 </NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/employees/add">
+                                <NavDropdown.Item as={Link} to="/home" onClick={() => setExpanded(false)}>
                                     Add Employee
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item as={Link} to="/employees/import">
+                                <NavDropdown.Item as={Link} to="/home" onClick={() => setExpanded(false)}>
                                     Import Employees
                                 </NavDropdown.Item>
                             </NavDropdown>
@@ -37,7 +57,7 @@ function AppNavbar() {
                         {/* Right: Notification + Profile */}
                         <Nav className="ms-auto align-items-center gap-3">
                             {/* Notification Dropdown */}
-                            <Dropdown align="end">
+                            <Dropdown align="end" show={notificationOpen} ref={notificationRef} onToggle={(isOpen) => setNotificationOpen(isOpen)}>
                                 <Dropdown.Toggle variant="link" className="text-white position-relative p-0" id="notification-dropdown" >
                                     <FaBell size={18} />
                                     <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle" >
