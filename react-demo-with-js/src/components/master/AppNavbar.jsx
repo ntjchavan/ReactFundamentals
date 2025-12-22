@@ -31,7 +31,7 @@ function AppNavbar() {
             <Navbar bg="dark" variant="dark" expand="lg" fixed="top" expanded={expanded} ref={navRef}>
                 <Container>
                     {/* Left: Logo / Menu */}
-                    <Navbar.Brand as={Link} to="/" onClick={() => { setExpanded(false) }}>MyApp</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/" onClick={() => { setExpanded(false) }}>Dashboard</Navbar.Brand>
                     <Navbar.Toggle aria-controls="main-navbar" onClick={() => { setExpanded(prev => !prev) }} />
                     <Navbar.Collapse id="main-navbar">
                         <Nav className="me-auto">
@@ -39,6 +39,7 @@ function AppNavbar() {
                             <Nav.Link as={Link} to="/aboutus" onClick={() => setExpanded(false)}>About Us</Nav.Link>
                             <Nav.Link as={Link} to="/products" onClick={() => setExpanded(false)}>Products</Nav.Link>
                             <Nav.Link as={Link} to="/contactus" onClick={() => setExpanded(false)}>Contact Us</Nav.Link>
+                            <Nav.Link as={Link} to="/counter" onClick={() => setExpanded(false)}>Demo</Nav.Link>
 
                             {/* Dropdown menu */}
                             <NavDropdown title="Employees" id="employees-dropdown">
@@ -51,6 +52,11 @@ function AppNavbar() {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item as={Link} to="/home" onClick={() => setExpanded(false)}>
                                     Import Employees
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                            <NavDropdown title="Demo" id="Demo">
+                                <NavDropdown.Item as={Link} to='/demo1' onClick={() => setExpanded(false)}>
+                                    Demo1
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
