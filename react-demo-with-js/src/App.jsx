@@ -5,7 +5,7 @@ import Layout from './components/master/Layout';
 import SidebarLayout from './components/master/SidebarLayout';
 import ProductList from './components/basic/ProductList';
 import ContactUs from './components/basic/ContactUs';
-import Demo1 from './components/demo/demo1';
+import Demo1 from './components/demo/Demo1';
 import Notfound from './components/master/Notfound';
 import Counter from './components/demo/Counter';
 

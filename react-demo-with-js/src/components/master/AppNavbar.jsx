@@ -39,7 +39,7 @@ function AppNavbar() {
                             <Nav.Link as={Link} to="/aboutus" onClick={() => setExpanded(false)}>About Us</Nav.Link>
                             <Nav.Link as={Link} to="/products" onClick={() => setExpanded(false)}>Products</Nav.Link>
                             <Nav.Link as={Link} to="/contactus" onClick={() => setExpanded(false)}>Contact Us</Nav.Link>
-                            <Nav.Link as={Link} to="/counter" onClick={() => setExpanded(false)}>Demo</Nav.Link>
+                            <Nav.Link as={Link} to="/demo1" onClick={() => setExpanded(false)}>Demo</Nav.Link>
 
                             {/* Dropdown menu */}
                             <NavDropdown title="Employees" id="employees-dropdown">
