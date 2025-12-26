@@ -9,3 +9,34 @@
     border: none;
     border-radius: 4px;
 }
+
+.btnfruit {
+    background-color: rgba(0, 0, 0, 0.966);
+    color: #b8eac6;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.btnfruit:hover {
+    background-color: #161313;
+    transform: scale(1.01);
+}
+
+ul {
+    display: table;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+li {
+    display: table-row;
+}
+
+li h3 {
+    display: table-cell;
+    padding: 8px 12px;
+    border: 1px solid #000000;
+    text-align: left;
+}
